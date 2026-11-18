@@ -4,3 +4,9 @@ build/
 dist/
 *.apk.idsig
 .DS_Store
+desktest/debug_*.png
+desktest/final_*.png
+desktest/out_*.png
+desktest/grid.png
+desktest/verify_*.png
+desktest/classes/

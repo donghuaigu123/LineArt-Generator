@@ -2,26 +2,21 @@ package com.lineart.gen;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/** 主界面：导入图片 → 一键生成线稿（傻瓜式两步操作） */
+/** 主界面：导入图片 → 裁剪选区 → 一键生成线稿（傻瓜式三步操作） */
 public class MainActivity extends Activity {
 
     private static final int REQ_PICK = 1001;
-    private static final int PREVIEW_MAX = 1600;
 
     private ImageView imgPreview;
-    private TextView txtHint, txtGenerating;
-    private ProgressBar progress;
+    private TextView txtHint;
     private Button btnGenerate;
     private Uri imageUri;
 
@@ -32,8 +27,6 @@ public class MainActivity extends Activity {
 
         imgPreview = findViewById(R.id.img_preview);
         txtHint = findViewById(R.id.txt_hint);
-        txtGenerating = findViewById(R.id.txt_generating);
-        progress = findViewById(R.id.progress);
         btnGenerate = findViewById(R.id.btn_generate);
         Button btnPick = findViewById(R.id.btn_pick);
 
@@ -49,31 +42,9 @@ public class MainActivity extends Activity {
         btnGenerate.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if (imageUri == null) return;
-                setBusy(true);
-                AsyncTask.THREAD_POOL_EXECUTOR.execute(new Runnable() {
-                    @Override public void run() {
-                        try {
-                            // 预解码验证图片可用
-                            final Bitmap b = BitmapUtils.decode(MainActivity.this, imageUri, PREVIEW_MAX);
-                            runOnUiThread(new Runnable() {
-                                @Override public void run() {
-                                    setBusy(false);
-                                    Intent it = new Intent(MainActivity.this, CompareActivity.class);
-                                    it.putExtra("uri", imageUri.toString());
-                                    startActivity(it);
-                                }
-                            });
-                        } catch (final Exception e) {
-                            runOnUiThread(new Runnable() {
-                                @Override public void run() {
-                                    setBusy(false);
-                                    Toast.makeText(MainActivity.this, "图片读取失败：" + e.getMessage(),
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    }
-                });
+                Intent it = new Intent(MainActivity.this, CropActivity.class);
+                it.putExtra("uri", imageUri.toString());
+                startActivity(it);
             }
         });
     }
@@ -92,12 +63,7 @@ public class MainActivity extends Activity {
             imgPreview.setImageURI(imageUri);
             btnGenerate.setEnabled(true);
             btnGenerate.setAlpha(1f);
+            btnGenerate.setText(R.string.crop_title);
         }
-    }
-
-    private void setBusy(boolean busy) {
-        progress.setVisibility(busy ? View.VISIBLE : View.GONE);
-        txtGenerating.setVisibility(busy ? View.VISIBLE : View.GONE);
-        btnGenerate.setEnabled(!busy || imageUri != null);
     }
 }

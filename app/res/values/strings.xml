@@ -24,4 +24,9 @@
     <string name="origin">原图</string>
     <string name="lineart">线稿</string>
     <string name="author">专为纹身转印底稿设计 · 完全离线运行</string>
+    <string name="crop_title">裁剪选区</string>
+    <string name="crop_hint">拖动边角调整选区 · 框内拖动平移 · 三分线辅助构图</string>
+    <string name="use_crop">使用选中部分生成</string>
+    <string name="use_full">使用整张图</string>
+    <string name="reset_crop">重置选区</string>
 </resources>
