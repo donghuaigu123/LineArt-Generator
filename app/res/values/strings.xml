@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">线稿生成</string>
+    <string name="app_desc">一键将彩色 / 黑白照片转为纹身级线描底稿\n纯白底色 · 线条清晰 · 适合转印打印</string>
+    <string name="pick_image">选择图片</string>
+    <string name="generate">生成线稿</string>
+    <string name="re_pick">换一张</string>
+    <string name="no_image_hint">尚未选择图片\n点击下方按钮从相册导入照片</string>
+    <string name="generating">正在生成线稿…</string>
+    <string name="hint_compare">拖动分割线对比 · 长按查看原图 · 双击展开/收起</string>
+    <string name="mode_label">线稿模式</string>
+    <string name="detail_label">细节保留</string>
+    <string name="thickness_label">线条粗细</string>
+    <string name="ink_label">线条浓度</string>
+    <string name="clean_label">背景净化</string>
+    <string name="dark_suppress">暗背景抑制（背景较暗的照片推荐开启）</string>
+    <string name="invert_output">反色输出（白线黑底）</string>
+    <string name="save">保存线稿</string>
+    <string name="share">分享 / 打印</string>
+    <string name="reset">重置参数</string>
+    <string name="saved_to">已保存：</string>
+    <string name="save_failed">保存失败，请重试</string>
+    <string name="processing_full">正在按原图分辨率重新生成并保存…</string>
+    <string name="origin">原图</string>
+    <string name="lineart">线稿</string>
+    <string name="author">专为纹身转印底稿设计 · 完全离线运行</string>
+</resources>
