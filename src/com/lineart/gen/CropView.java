@@ -52,6 +52,12 @@ public class CropView extends View {
 
     public void setBitmap(Bitmap b) {
         bitmap = b;
+        // 若视图已布局完成，立即计算图片显示区域并重置选区；
+        // 不能只依赖 onSizeChanged（尺寸不变时它不会再次触发）
+        if (getWidth() > 0 && getHeight() > 0) {
+            computeImageRect();
+            resetCrop();
+        }
         requestLayout();
         invalidate();
     }
